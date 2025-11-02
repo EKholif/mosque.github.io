@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title will be set by JavaScript -->
+    <title data-key="pageTitle">مسجد الرحمة - Dortmund</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', 'Open Sans', sans-serif;
+        }
+        
+        :root {
+            --primary-green: #0D8A3F;
+            --gold: #D4AF37;
+            --light-green: #e8f5e9;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --border-color: #e0e0e0;
+        }
+
+        /* Base body styles */
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Language-specific direction */
+        html[dir="rtl"] {
+            direction: rtl;
+        }
+        html[dir="ltr"] {
+            direction: ltr;
+        }
+
+        /* Sidebar-open body transform */
+        html[dir="rtl"] body.menu-open {
+            transform: translateX(-250px);
+            overflow: hidden;
+        }
+        html[dir="ltr"] body.menu-open {
+            transform: translateX(250px);
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 32px;
+            color: var(--primary-green);
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            color: var(--primary-green);
+            margin: 0;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--primary-green);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--light-green);
+            padding: 10px 0;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary-green);
+        }
+        
+        /* LTR/RTL underline animation for nav links */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            background-color: var(--primary-green);
+            transition: width 0.3s;
+        }
+        html[dir="rtl"] nav a::after {
+            right: 0;
+        }
+        html[dir="ltr"] nav a::after {
+            left: 0;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar-nav {
+            position: fixed;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        /* LTR/RTL positioning for sidebar */
+        html[dir="rtl"] .sidebar-nav {
+            right: 0;
+            transform: translateX(100%);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        html[dir="ltr"] .sidebar-nav {
+            left: 0;
+            transform: translateX(-100%);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        html[dir="rtl"] .sidebar-nav.open {
+            transform: translateX(0);
+        }
+        html[dir="ltr"] .sidebar-nav.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            margin-top: 50px;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar-nav a:hover {
+            background-color: var(--light-green);
+            color: var(--primary-green);
+        }
+        
+        .close-sidebar {
+            position: absolute;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+        
+        /* LTR/RTL positioning for close button */
+        html[dir="rtl"] .close-sidebar {
+            left: 15px;
+        }
+        html[dir="ltr"] .close-sidebar {
+            right: 15px;
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-color: var(--primary-green);
+        }
+        
+        .lang-btn:hover:not(.active) {
+            background-color: var(--light-green);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 10px;
+        }
+        
+        .hero h2 {
+            font-size: 36px;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Compact Prayer Times */
+        .compact-prayer {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            background-color: var(--light-green);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .prayer-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .prayer-item.active {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        .prayer-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .prayer-time {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .jumuah-time {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: var(--gold);
+            color: var(--white);
+            border-radius: 10px;
+            font-weight: 700;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            color: var(--primary-green);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        /* LTR/RTL underline for section titles */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        html[dir="rtl"] .section-title::after {
+            right: 50%;
+            transform: translateX(50%);
+        }
+        html[dir="ltr"] .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .feature-title {
+            font-size: 22px;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .feature-desc {
+            font-size: 16px;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        /* News Ticker */
+        .news-ticker {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 12px 0;
+            margin-bottom: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ticker-content {
+            display: flex;
+            /* Animation will be controlled by JS based on LTR/RTL */
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            padding: 0 20px;
+            font-size: 16px;
+        }
+
+        @keyframes ticker-scroll-rtl {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes ticker-scroll-ltr {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        html[dir="rtl"] .ticker-content {
+            animation: ticker-scroll-rtl 30s linear infinite;
+        }
+
+        html[dir="ltr"] .ticker-content {
+            /* Note: LTR scroll direction might need adjustment based on content duplication */
+            animation: ticker-scroll-rtl 30s linear infinite;
+        }
+        
+        /* Services Section */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-title {
+            font-size: 22px;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .service-desc {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+        
+        /* Projects Section */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .project-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--primary-green);
+        }
+
+        html[dir="ltr"] .project-card::after {
+            right: auto;
+            left: 0;
+        }
+        
+        .project-title {
+            font-size: 22px;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+        
+        .project-desc {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--gold);
+            border-radius: 5px;
+        }
+        
+        .project-goal {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* Donation Section */
+        .donation {
+            background-color: var(--light-green);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .donation h3 {
+            font-size: 26px;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+        
+        .donation p {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .donate-btn {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .donate-btn:hover {
+            background-color: var(--gold);
+        }
+        
+        /* Jobs Section */
+        .jobs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .job-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .job-type {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .job-type.paid {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        .job-type.volunteer {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        .job-title {
+            font-size: 22px;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+        
+        .job-desc {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .apply-btn {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background-color: var(--gold);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            font-size: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .language-selector {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .compact-prayer {
+                gap: 10px;
+            }
+            
+            .prayer-item {
+                min-width: 70px;
+                padding: 8px;
+            }
+            
+            .features, .services, .projects, .jobs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-mosque"></i>
+                    <div class="logo-text">
+                        <h1 data-key="mosqueName">مسجد الرحمة</h1>
+                        <p data-key="mosqueLocation">Dortmund, Germany</p>
+                    </div>
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="ar">العربية</button>
+                    <button class="lang-btn" data-lang="en">English</button>
+                    <button class="lang-btn" data-lang="de">Deutsch</button>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="#" data-key="navHome">الرئيسية</a></li>
+                    <li><a href="#" data-key="navAbout">عن المسجد</a></li>
+                    <li><a href="#" data-key="navServices">الخدمات</a></li>
+                    <li><a href="#" data-key="navActivities">الأنشطة</a></li>
+                    <li><a href="#" data-key="navProjects">مشاريعنا</a></li>
+                    <li><a href="#" data-key="navDonations">التبرعات</a></li>
+                    <li><a href="#" data-key="navJobs">الوظائف</a></li>
+                    <li><a href="#" data-key="navContact">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar-nav" id="sidebarNav">
+        <div class="close-sidebar" id="closeSidebar">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="#" data-key="navHome">الرئيسية</a></li>
+            <li><a href="#" data-key="navAbout">عن المسجد</a></li>
+            <li><a href="#" data-key="navServices">الخدمات</a></li>
+            <li><a href="#" data-key="navActivities">الأنشطة</a></li>
+            <li><a href="#" data-key="navProjects">مشاريعنا</a></li>
+            <li><a href="#" data-key="navDonations">التبرعات</a></li>
+            <li><a href="#" data-key="navJobs">الوظائف</a></li>
+            <li><a href="#" data-key="navContact">اتصل بنا</a></li>
+        </ul>
+    </div>
+
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <div class="ticker-item" data-key="ticker1">🔔 مشروع توسعة المسجد: تم جمع 75% من التبرعات المطلوبة - شاركوا في الخير</div>
+            <div class="ticker-item" data-key="ticker2">📅 محاضرة "الأسرة المسلمة في الغرب" يوم الجمعة القادمة بعد صلاة العصر</div>
+            <div class="ticker-item" data-key="ticker3">🌙 استعدادات المسجد لاستقبال شهر رمضان المبارك - تبرعوا لجمعية المسجد</div>
+            <!-- Duplicated for smooth scroll -->
+            <div class="ticker-item" data-key="ticker1">🔔 مشروع توسعة المسجد: تم جمع 75% من التبرعات المطلوبة - شاركوا في الخير</div>
+            <div class="ticker-item" data-key="ticker2">📅 محاضرة "الأسرة المسلمة في الغرب" يوم الجمعة القادمة بعد صلاة العصر</div>
+            <div class="ticker-item" data-key="ticker3">🌙 استعدادات المسجد لاستقبال شهر رمضان المبارك - تبرعوا لجمعية المسجد</div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Unified Content Block -->
+        <div>
+            <section class="hero">
+                <h2 data-key="heroTitle">مرحباً بكم في مسجد الرحمة</h2>
+                <p data-key="heroDesc">مركز إسلامي يخدم المجتمع المسلم في دورتموند منذ عام 2005. نحن نقدم خدمات دينية وثقافية واجتماعية للمسلمين في المنطقة، ونسعى لبناء جسور التفاهم مع جميع أفراد المجتمع.</p>
+            </section>
+
+            <div class="compact-prayer">
+                <div class="prayer-item">
+                    <div class="prayer-name" data-key="prayerFajr">الفجر</div>
+                    <div class="prayer-time">5:13</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name" data-key="prayerSunrise">الشروق</div>
+                    <div class="prayer-time">7:08</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name" data-key="prayerDhuhr">الظهر</div>
+                    <div class="prayer-time">13:25</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name" data-key="prayerAsr">العصر</div>
+                    <div class="prayer-time">16:49</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name" data-key="prayerMaghrib">المغرب</div>
+                    <div class="prayer-time">19:40</div>
+                </div>
+                <div class="prayer-item active">
+                    <div class="prayer-name" data-key="prayerIsha">العشاء</div>
+                    <div class="prayer-time">21:10</div>
+                </div>
+            </div>
+
+            <div class="jumuah-time">
+                <i class="fas fa-mosque"></i>
+                <span data-key="jumuahTime">صلاة الجمعة: كل جمعة الساعة 13:15 (بعد صلاة الظهر)</span>
+            </div>
+
+            <h2 class="section-title" data-key="sectionFeatures">خدماتنا وأنشطتنا</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-quran"></i>
+                    </div>
+                    <h3 class="feature-title" data-key="feature1Title">الدروس الدينية</h3>
+                    <p class="feature-desc" data-key="feature1Desc">ندرس القرآن الكريم والسنة النبوية ونعقد حلقات الذكر والدروس الدينية لجميع الأعمار.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="feature-title" data-key="feature2Title">الخدمات الاجتماعية</h3>
+                    <p class="feature-desc" data-key="feature2Desc">نقدم الدعم والمساندة للمحتاجين ونساعد في حل المشكلات الأسرية والاجتماعية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="feature-title" data-key="feature3Title">دورات اللغة العربية</h3>
+                    <p class="feature-desc" data-key="feature3Desc">نظم دورات لتعليم اللغة العربية وقواعدها للصغار والكبار على أيدي معلمين متخصصين.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" data-key="sectionServices">خدمات المجتمع</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3 class="service-title" data-key="service1Title">خدمات الزواج</h3>
+                    <p class="service-desc" data-key="service1Desc">نساعد في تنظيم عقود الزواج الشرعية وفق الشريعة الإسلامية، ونوفر استشارات ما قبل الزواج، ونساعد في ترتيبات حفلات الزفاف البسيطة في قاعة المسجد.</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="service-title" data-key="service2Title">خدمات الوفيات</h3>
+                    <p class="service-desc" data-key="service2Desc">نوفر الدعم الكامل لأسر المتوفين من حيث الترتيبات اللازمة للجنازات، والدعم النفسي والعاطفي، وإجراءات الدفن وفق التعاليم الإسلامية.</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="service-title" data-key="service3Title">الفتاوى الشرعية</h3>
+                    <p class="service-desc" data-key="service3Desc">نقدم استشارات دينية وفتاوى شرعية من قبل متخصصين معتمدين في الفقه الإسلامي، مع مراعاة ظروف الحياة في أوروبا وتحدياتها.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" data-key="sectionProjects">مشاريع التبرعات</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <h3 class="project-title" data-key="project1Title">تجديد المسجد</h3>
+                    <p class="project-desc" data-key="project1Desc">مشروع تجديد وتوسعة المسجد لاستيعاب عدد أكبر من المصلين وتوفير مرافق أفضل للجالية المسلمة.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%;"></div>
+                    </div>
+                    <div class="project-goal">
+                        <span data-key="project1Progress">75% محقق</span>
+                        <span data-key="project1Goal">هدف: 150,000 يورو</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title" data-key="project2Title">شراء مسجد جديد</h3>
+                    <p class="project-desc" data-key="project2Desc">مشروع طموح لشراء مبنى جديد وتحويله إلى مسجد يخدم الجالية المسلمة في المنطقة الشمالية من دورتموند.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%;"></div>
+                    </div>
+                    <div class="project-goal">
+                        <span data-key="project2Progress">30% محقق</span>
+                        <span data-key="project2Goal">هدف: 300,000 يورو</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title" data-key="project3Title">مدرسة القرآن</h3>
+                    <p class="project-desc" data-key="project3Desc">إنشاء مدرسة لتعليم القرآن الكريم واللغة العربية لأطفال الجالية المسلمة في دورتموند.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 45%;"></div>
+                    </div>
+                    <div class="project-goal">
+                        <span data-key="project3Progress">45% محقق</span>
+                        <span data-key="project3Goal">هدف: 80,000 يورو</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" data-key="sectionJobs">الوظائف والتطوع</h2>
+            <div class="jobs">
+                <div class="job-card">
+                    <span class="job-type paid" data-key="job1Type">مدفوع</span>
+                    <h3 class="job-title" data-key="job1Title">إمام مسجد</h3>
+                    <p class="job-desc" data-key="job1Desc">نبحث عن إمام متفرغ لديه خبرة في الخطابة وإمامة المصلين وتدريس العلوم الشرعية.</p>
+                    <button class="apply-btn" data-key="jobApply">تقديم طلب</button>
+                </div>
+                <div class="job-card">
+                    <span class="job-type paid" data-key="job2Type">مدفوع</span>
+                    <h3 class="job-title" data-key="job2Title">معلم قرآن</h3>
+                    <p class="job-desc" data-key="job2Desc">مطلوب معلم/ة قرآن لتدريس الأطفال والكبار في مدرسة المسجد.</p>
+                    <button class="apply-btn" data-key="jobApply">تقديم طلب</button>
+                </div>
+                <div class="job-card">
+                    <span class="job-type volunteer" data-key="job3Type">تطوعي</span>
+                    <h3 class="job-title" data-key="job3Title">منظم فعاليات</h3>
+                    <p class="job-desc" data-key="job3Desc">نبحث عن متطوعين لتنظيم الفعاليات والأنشطة الاجتماعية في المسجد.</p>
+                    <button class="apply-btn" data-key="jobVolunteer">التطوع</button>
+                </div>
+            </div>
+
+            <div class="donation">
+                <h3 data-key="donationTitle">ادعم مسجد الرحمة</h3>
+                <p data-key="donationDesc">مسجد الرحمة يعتمد على تبرعاتكم ودعمكم لتقديم خدماته للجالية المسلمة في دورتموند. تبرعكم يساعدنا في الاستمرار في تقديم خدماتنا وتطويرها.</p>
+                <button class="donate-btn" data-key="donationButton">تبرع الآن</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-key="footerAboutTitle">عن المسجد</h3>
+                    <p data-key="footerAboutDesc">مسجد الرحمة هو مركز إسلامي يخدم الجالية المسلمة في دورتموند منذ عام 2005، ويقدم خدمات دينية وثقافية واجتماعية.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-key="footerLinksTitle">روابط سريعة</h3>
+                    <a href="#" data-key="navHome">الرئيسية</a>
+                    <a href="#" data-key="navAbout">عن المسجد</a>
+                    <a href="#" data-key="navServices">الخدمات</a>
+                    <a href="#" data-key="navActivities">الأنشطة</a>
+                    <a href="#" data-key="navContact">اتصل بنا</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-key="footerContactTitle">معلومات الاتصال</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dortmund, Germany</p>
+                    <p><i class="fas fa-phone"></i> +49 123 456 789</p>
+                    <p><i class="fas fa-envelope"></i> info@alrahma-mosque.de</p>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p data-key="footerCopyright">© 2023 مسجد الرحمة - دورتموند. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Translations Object ---
+        const translations = {
+            'ar': {
+                pageTitle: 'مسجد الرحمة - Dortmund',
+                mosqueName: 'مسجد الرحمة',
+                mosqueLocation: 'Dortmund, Germany',
+                navHome: 'الرئيسية',
+                navAbout: 'عن المسجد',
+                navServices: 'الخدمات',
+                navActivities: 'الأنشطة',
+                navProjects: 'مشاريعنا',
+                navDonations: 'التبرعات',
+                navJobs: 'الوظائف',
+                navContact: 'اتصل بنا',
+                ticker1: '🔔 مشروع توسعة المسجد: تم جمع 75% من التبرعات المطلوبة - شاركوا في الخير',
+                ticker2: '📅 محاضرة "الأسرة المسلمة في الغرب" يوم الجمعة القادمة بعد صلاة العصر',
+                ticker3: '🌙 استعدادات المسجد لاستقبال شهر رمضان المبارك - تبرعوا لجمعية المسجد',
+                heroTitle: 'مرحباً بكم في مسجد الرحمة',
+                heroDesc: 'مركز إسلامي يخدم المجتمع المسلم في دورتموند منذ عام 2005. نحن نقدم خدمات دينية وثقافية واجتماعية للمسلمين في المنطقة، ونسعى لبناء جسور التفاهم مع جميع أفراد المجتمع.',
+                prayerFajr: 'الفجر',
+                prayerSunrise: 'الشروق',
+                prayerDhuhr: 'الظهر',
+                prayerAsr: 'العصر',
+                prayerMaghrib: 'المغرب',
+                prayerIsha: 'العشاء',
+                jumuahTime: 'صلاة الجمعة: كل جمعة الساعة 13:15 (بعد صلاة الظهر)',
+                sectionFeatures: 'خدماتنا وأنشطتنا',
+                feature1Title: 'الدروس الدينية',
+                feature1Desc: 'ندرس القرآن الكريم والسنة النبوية ونعقد حلقات الذكر والدروس الدينية لجميع الأعمار.',
+                feature2Title: 'الخدمات الاجتماعية',
+                feature2Desc: 'نقدم الدعم والمساندة للمحتاجين ونساعد في حل المشكلات الأسرية والاجتماعية.',
+                feature3Title: 'دورات اللغة العربية',
+                feature3Desc: 'نظم دورات لتعليم اللغة العربية وقواعدها للصغار والكبار على أيدي معلمين متخصصين.',
+                sectionServices: 'خدمات المجتمع',
+                service1Title: 'خدمات الزواج',
+                service1Desc: 'نساعد في تنظيم عقود الزواج الشرعية وفق الشريعة الإسلامية، ونوفر استشارات ما قبل الزواج، ونساعد في ترتيبات حفلات الزفاف البسيطة في قاعة المسجد.',
+                service2Title: 'خدمات الوفيات',
+                service2Desc: 'نوفر الدعم الكامل لأسر المتوفين من حيث الترتيبات اللازمة للجنازات، والدعم النفسي والعاطفي، وإجراءات الدفن وفق التعاليم الإسلامية.',
+                service3Title: 'الفتاوى الشرعية',
+                service3Desc: 'نقدم استشارات دينية وفتاوى شرعية من قبل متخصصين معتمدين في الفقه الإسلامي، مع مراعاة ظروف الحياة في أوروبا وتحدياتها.',
+                sectionProjects: 'مشاريع التبرعات',
+                project1Title: 'تجديد المسجد',
+                project1Desc: 'مشروع تجديد وتوسعة المسجد لاستيعاب عدد أكبر من المصلين وتوفير مرافق أفضل للجالية المسلمة.',
+                project1Progress: '75% محقق',
+                project1Goal: 'هدف: 150,000 يورو',
+                project2Title: 'شراء مسجد جديد',
+                project2Desc: 'مشروع طموح لشراء مبنى جديد وتحويله إلى مسجد يخدم الجالية المسلمة في المنطقة الشمالية من دورتموند.',
+                project2Progress: '30% محقق',
+                project2Goal: 'هدف: 300,000 يورو',
+                project3Title: 'مدرسة القرآن',
+                project3Desc: 'إنشاء مدرسة لتعليم القرآن الكريم واللغة العربية لأطفال الجالية المسلمة في دورتموند.',
+                project3Progress: '45% محقق',
+                project3Goal: 'هدف: 80,000 يورو',
+                sectionJobs: 'الوظائف والتطوع',
+                job1Type: 'مدفوع',
+                job1Title: 'إمام مسجد',
+                job1Desc: 'نبحث عن إمام متفرغ لديه خبرة في الخطابة وإمامة المصلين وتدريس العلوم الشرعية.',
+                jobApply: 'تقديم طلب',
+                job2Type: 'مدفوع',
+                job2Title: 'معلم قرآن',
+                job2Desc: 'مطلوب معلم/ة قرآن لتدريس الأطفال والكبار في مدرسة المسجد.',
+                job3Type: 'تطوعي',
+                job3Title: 'منظم فعاليات',
+                job3Desc: 'نبحث عن متطوعين لتنظيم الفعاليات والأنشطة الاجتماعية في المسجد.',
+                jobVolunteer: 'التطوع',
+                donationTitle: 'ادعم مسجد الرحمة',
+                donationDesc: 'مسجد الرحمة يعتمد على تبرعاتكم ودعمكم لتقديم خدماته للجالية المسلمة في دورتموند. تبرعكم يساعدنا في الاستمرار في تقديم خدماتنا وتطويرها.',
+                donationButton: 'تبرع الآن',
+                footerAboutTitle: 'عن المسجد',
+                footerAboutDesc: 'مسجد الرحمة هو مركز إسلامي يخدم الجالية المسلمة في دورتموند منذ عام 2005، ويقدم خدمات دينية وثقافية واجتماعية.',
+                footerLinksTitle: 'روابط سريعة',
+                footerContactTitle: 'معلومات الاتصال',
+                footerCopyright: '© 2023 مسجد الرحمة - دورتموند. جميع الحقوق محفوظة.'
+            },
+            'en': {
+                pageTitle: 'Al-Rahma Mosque - Dortmund',
+                mosqueName: 'Al-Rahma Mosque',
+                mosqueLocation: 'Dortmund, Germany',
+                navHome: 'Home',
+                navAbout: 'About',
+                navServices: 'Services',
+                navActivities: 'Activities',
+                navProjects: 'Projects',
+                navDonations: 'Donations',
+                navJobs: 'Jobs',
+                navContact: 'Contact Us',
+                ticker1: '🔔 Mosque Expansion Project: 75% of required donations collected - Participate in this good deed',
+                ticker2: '📅 Lecture "The Muslim Family in the West" next Friday after Asr prayer',
+                ticker3: '🌙 Mosque preparations for the holy month of Ramadan - Donate to the mosque association',
+                heroTitle: 'Welcome to Al-Rahma Mosque',
+                heroDesc: 'An Islamic center serving the Muslim community in Dortmund since 2005. We provide religious, cultural, and social services for Muslims in the area and strive to build bridges of understanding with all members of the community.',
+                prayerFajr: 'Fajr',
+                prayerSunrise: 'Sunrise',
+                prayerDhuhr: 'Dhuhr',
+                prayerAsr: 'Asr',
+                prayerMaghrib: 'Maghrib',
+                prayerIsha: 'Isha',
+                jumuahTime: 'Jumuah Prayer: Every Friday at 13:15 (after Dhuhr prayer)',
+                sectionFeatures: 'Our Services & Activities',
+                feature1Title: 'Religious Lessons',
+                feature1Desc: 'We study the Holy Quran and the Sunnah, holding circles of remembrance and religious lessons for all ages.',
+                feature2Title: 'Social Services',
+                feature2Desc: 'We provide support and assistance to those in need and help solve family and social problems.',
+                feature3Title: 'Arabic Language Courses',
+                feature3Desc: 'We organize courses to teach the Arabic language and its rules for children and adults by specialized teachers.',
+                sectionServices: 'Community Services',
+                service1Title: 'Marriage Services',
+                service1Desc: 'We assist in organizing Islamic marriage contracts according to Sharia, provide pre-marital counseling, and help with simple wedding arrangements in the mosque hall.',
+                service2Title: 'Funeral Services',
+                service2Desc: 'We provide full support to the families of the deceased in terms of funeral arrangements, psychological and emotional support, and burial procedures according to Islamic teachings.',
+                service3Title: 'Islamic Rulings (Fatwas)',
+                service3Desc: 'We offer religious consultations and fatwas by certified specialists in Islamic jurisprudence, considering the living conditions and challenges in Europe.',
+                sectionProjects: 'Donation Projects',
+                project1Title: 'Mosque Renovation',
+                project1Desc: 'A project to renovate and expand the mosque to accommodate more worshippers and provide better facilities for the Muslim community.',
+                project1Progress: '75% Achieved',
+                project1Goal: 'Goal: €150,000',
+                project2Title: 'Buy a New Mosque',
+                project2Desc: 'An ambitious project to purchase a new building and convert it into a mosque serving the Muslim community in the northern area of Dortmund.',
+                project2Progress: '30% Achieved',
+                project2Goal: 'Goal: €300,000',
+                project3Title: 'Quran School',
+                project3Desc: 'Establishing a school to teach the Holy Quran and Arabic language to the children of the Muslim community in Dortmund.',
+                project3Progress: '45% Achieved',
+                project3Goal: 'Goal: €80,000',
+                sectionJobs: 'Jobs & Volunteering',
+                job1Type: 'Paid',
+                job1Title: 'Imam',
+                job1Desc: 'We are looking for a full-time Imam with experience in preaching, leading prayers, and teaching Islamic sciences.',
+                jobApply: 'Apply Now',
+                job2Type: 'Paid',
+                job2Title: 'Quran Teacher',
+                job2Desc: 'Wanted: Quran teacher (m/f) to teach children and adults in the mosque school.',
+                job3Type: 'Volunteer',
+                job3Title: 'Event Organizer',
+                job3Desc: 'We are looking for volunteers to organize social events and activities at the mosque.',
+                jobVolunteer: 'Volunteer',
+                donationTitle: 'Support Al-Rahma Mosque',
+                donationDesc: 'Al-Rahma Mosque relies on your donations and support to provide its services to the Muslim community in Dortmund. Your donation helps us continue and improve our services.',
+                donationButton: 'Donate Now',
+                footerAboutTitle: 'About Us',
+                footerAboutDesc: 'Al-Rahma Mosque is an Islamic center serving the Muslim community in Dortmund since 2005, providing religious, cultural, and social services.',
+                footerLinksTitle: 'Quick Links',
+                footerContactTitle: 'Contact Info',
+                footerCopyright: '© 2023 Al-Rahma Mosque - Dortmund. All rights reserved.'
+            },
+            'de': {
+                pageTitle: 'Al-Rahma Moschee - Dortmund',
+                mosqueName: 'Al-Rahma Moschee',
+                mosqueLocation: 'Dortmund, Deutschland',
+                navHome: 'Startseite',
+                navAbout: 'Über uns',
+                navServices: 'Dienste',
+                navActivities: 'Aktivitäten',
+                navProjects: 'Projekte',
+                navDonations: 'Spenden',
+                navJobs: 'Jobs',
+                navContact: 'Kontakt',
+                ticker1: '🔔 Moschee-Erweiterungsprojekt: 75% der benötigten Spenden gesammelt - Beteiligen Sie sich an dieser guten Tat',
+                ticker2: '📅 Vortrag "Die muslimische Familie im Westen" nächsten Freitag nach dem Asr-Gebet',
+                ticker3: '🌙 Vorbereitungen der Moschee auf den heiligen Monat Ramadan - Spenden Sie an den Moscheeverein',
+                heroTitle: 'Willkommen in der Al-Rahma Moschee',
+                heroDesc: 'Ein islamisches Zentrum, das der muslimischen Gemeinschaft in Dortmund seit 2005 dient. Wir bieten religiöse, kulturelle und soziale Dienste für Muslime in der Region und bemühen uns, Brücken des Verständnisses zu allen Mitgliedern der Gemeinschaft zu bauen.',
+                prayerFajr: 'Fajr',
+                prayerSunrise: 'Sonnenaufgang',
+                prayerDhuhr: 'Dhuhr',
+                prayerAsr: 'Asr',
+                prayerMaghrib: 'Maghrib',
+                prayerIsha: 'Isha',
+                jumuahTime: 'Freitagsgebet: Jeden Freitag um 13:15 Uhr (nach dem Dhuhr-Gebet)',
+                sectionFeatures: 'Unsere Dienste & Aktivitäten',
+                feature1Title: 'Religiöser Unterricht',
+                feature1Desc: 'Wir studieren den Heiligen Koran und die Sunnah, veranstalten Gedenkkreise und religiösen Unterricht für alle Altersgruppen.',
+                feature2Title: 'Soziale Dienste',
+                feature2Desc: 'Wir bieten Unterstützung und Hilfe für Bedürftige und helfen bei der Lösung familiärer und sozialer Probleme.',
+                feature3Title: 'Arabischkurse',
+                feature3Desc: 'Wir organisieren Kurse zum Erlernen der arabischen Sprache und ihrer Regeln für Kinder und Erwachsene durch spezialisierte Lehrer.',
+                sectionServices: 'Gemeindedienste',
+                service1Title: 'Eheschließungen',
+                service1Desc: 'Wir helfen bei der Organisation islamischer Eheverträge gemäß der Scharia, bieten Eheberatung an und helfen bei einfachen Hochzeitsarrangements im Moscheesaal.',
+                service2Title: 'Bestattungsdienste',
+                service2Desc: 'Wir bieten volle Unterstützung für die Familien der Verstorbenen bei Bestattungsregelungen, psychologischer und emotionaler Unterstützung und Beerdigungsverfahren gemäß den islamischen Lehren.',
+                service3Title: 'Islamische Urteile (Fatwas)',
+                service3Desc: 'Wir bieten religiöse Beratungen und Fatwas von zertifizierten Spezialisten für islamische Jurisprudenz unter Berücksichtigung der Lebensbedingungen und Herausforderungen in Europa.',
+                sectionProjects: 'Spendenprojekte',
+                project1Title: 'Moscheerenovierung',
+                project1Desc: 'Ein Projekt zur Renovierung und Erweiterung der Moschee, um mehr Gläubige aufzunehmen und bessere Einrichtungen für die muslimische Gemeinschaft bereitzustellen.',
+                project1Progress: '75% erreicht',
+                project1Goal: 'Ziel: 150.000 €',
+                project2Title: 'Kauf einer neuen Moschee',
+                project2Desc: 'Ein ehrgeiziges Projekt zum Kauf eines neuen Gebäudes und Umbau in eine Moschee für die muslimische Gemeinschaft im Norden von Dortmund.',
+                project2Progress: '30% erreicht',
+                project2Goal: 'Ziel: 300.000 €',
+                project3Title: 'Koranschule',
+                project3Desc: 'Gründung einer Schule zum Unterrichten des Heiligen Korans und der arabischen Sprache für die Kinder der muslimischen Gemeinschaft in Dortmund.',
+                project3Progress: '45% erreicht',
+                project3Goal: 'Ziel: 80.000 €',
+                sectionJobs: 'Jobs & Ehrenamt',
+                job1Type: 'Bezahlt',
+                job1Title: 'Imam',
+                job1Desc: 'Wir suchen einen Vollzeit-Imam mit Erfahrung im Predigen, Leiten von Gebeten und Unterrichten islamischer Wissenschaften.',
+                jobApply: 'Jetzt bewerben',
+                job2Type: 'Bezahlt',
+                job2Title: 'Koranlehrer/in',
+                job2Desc: 'Gesucht: Koranlehrer/in (m/w/d) für den Unterricht von Kindern und Erwachsenen in der Moscheeschule.',
+                job3Type: 'Ehrenamtlich',
+                job3Title: 'Veranstaltungsorganisator/in',
+                job3Desc: 'Wir suchen Freiwillige zur Organisation von sozialen Veranstaltungen und Aktivitäten in der Moschee.',
+                jobVolunteer: 'Ehrenamtlich',
+                donationTitle: 'Unterstützen Sie die Al-Rahma Moschee',
+                donationDesc: 'Die Al-Rahma Moschee ist auf Ihre Spenden und Unterstützung angewiesen, um ihre Dienste für die muslimische Gemeinschaft in Dortmund bereitzustellen. Ihre Spende hilft uns, unsere Dienste fortzusetzen und zu verbessern.',
+                donationButton: 'Jetzt spenden',
+                footerAboutTitle: 'Über uns',
+                footerAboutDesc: 'Die Al-Rahma Moschee ist ein islamisches Zentrum, das der muslimischen Gemeinschaft in Dortmund seit 2005 dient und religiöse, kulturelle und soziale Dienste anbietet.',
+                footerLinksTitle: 'Schnelllinks',
+                footerContactTitle: 'Kontaktinfo',
+                footerCopyright: '© 2023 Al-Rahma Moschee - Dortmund. Alle Rechte vorbehalten.'
+            }
+        };
+
+        // --- DOM Elements ---
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebarNav = document.getElementById('sidebarNav');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const body = document.body;
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const translatableElements = document.querySelectorAll('[data-key]');
+        
+        // --- Sidebar Menu Logic ---
+        menuToggle.addEventListener('click', function() {
+            sidebarNav.classList.add('open');
+            body.classList.add('menu-open');
+        });
+        
+        closeSidebar.addEventListener('click', function() {
+            sidebarNav.classList.remove('open');
+            body.classList.remove('menu-open');
+        });
+        
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!sidebarNav.contains(event.target) && !menuToggle.contains(event.target) && sidebarNav.classList.contains('open')) {
+                sidebarNav.classList.remove('open');
+                body.classList.remove('menu-open');
+            }
+        });
+        
+        // --- Language Switcher Logic ---
+        function switchLanguage(lang) {
+            if (!translations[lang]) {
+                console.error(`Language ${lang} not found in translations.`);
+                return;
+            }
+
+            // 1. Set HTML lang and dir
+            document.documentElement.lang = lang;
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+            // 2. Update all translatable elements
+            translatableElements.forEach(element => {
+                const key = element.getAttribute('data-key');
+                const translation = translations[lang][key];
+                if (translation !== undefined) {
+                    element.textContent = translation;
+                } else {
+                    console.warn(`Translation key "${key}" not found for lang "${lang}".`);
+                }
+            });
+
+            // 3. Update active button state
+            langButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // 4. Store preference
+            try {
+                localStorage.setItem('preferredLang', lang);
+            } catch (e) {
+                console.warn('Could not save language preference to localStorage.', e);
+            }
+        }
+
+        // Add click event listeners to lang buttons
+        langButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
+        });
+
+        // --- Page Load Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Load preferred language or default to 'ar'
+            let preferredLang = 'ar';
+            try {
+                const storedLang = localStorage.getItem('preferredLang');
+                if (storedLang && translations[storedLang]) {
+                    preferredLang = storedLang;
+                }
+            } catch (e) {
+                 console.warn('Could not read language preference from localStorage.', e);
+            }
+            
+            switchLanguage(preferredLang);
+
+            // 2. Update current prayer (simulation)
+            updateCurrentPrayer();
+        });
+
+
+        // --- Other Functions ---
+        
+        // Update current prayer time (simulation)
+        function updateCurrentPrayer() {
+            const prayers = document.querySelectorAll('.prayer-item');
+            prayers.forEach(prayer => prayer.classList.remove('active'));
+            
+            // This is just a simulation, in a real app this would be calculated
+            const prayerItems = document.querySelectorAll('.prayer-item');
+            if(prayerItems.length > 5) {
+                prayerItems[5].classList.add('active'); // Highlight Isha
+            }
+        }
+    </script>
+</body>
+</html>
